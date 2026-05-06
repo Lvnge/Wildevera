@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-// ─── Brand Tokens ─────────────────────────────────────────────────────────────
+
+// ─── Branding Colors ─────────────────────────────────────────────────────────────
 // #1F3A34  Forest
 // #8A7F78  Warm Stone
 // #F5F2EC  Parchment
@@ -56,37 +57,37 @@ const NAV_ITEMS: NavItem[] = [
 
 const SERVICES: Service[] = [
   {
-    icon: "📋",
+    icon: "",
     title: "Administrative Support",
     description:
       "Inbox and calendar management, scheduling, follow-ups, and day-to-day coordination — handled with precision so you can lead.",
   },
   {
-    icon: "📣",
+    icon: "",
     title: "Digital Marketing & Social Media",
     description:
       "Content creation, campaign management, social scheduling, and engagement tracking to grow your presence online.",
   },
   {
-    icon: "🤝",
+    icon: "",
     title: "Client & Customer Care",
     description:
       "Responsive communication, intake coordination, and relationship management that makes every client feel valued.",
   },
   {
-    icon: "⚙️",
+    icon: "",
     title: "Operations Assistance",
     description:
       "Workflow design, task coordination, process streamlining — we help your business run without you being the bottleneck.",
   },
   {
-    icon: "📊",
+    icon: "",
     title: "Data Entry & CRM Support",
     description:
       "Database management, CRM optimization, and organized reporting so your information is always clean and actionable.",
   },
   {
-    icon: "🚀",
+    icon: "",
     title: "Project Management",
     description:
       "End-to-end project planning and execution. Deadlines met, tasks tracked, stakeholders informed.",
@@ -114,32 +115,13 @@ const STEPS: Step[] = [
   },
 ];
 
-const TESTIMONIALS: Testimonial[] = [
-  {
-    quote:
-      "Finding a Wildevera VA was one of the best decisions I made for my business this year. Professional, reliable, and genuinely invested in our success.",
-    author: "Sarah M.",
-    role: "Owner, Boutique Marketing Agency",
-  },
-  {
-    quote:
-      "I was skeptical about remote support, but our VA became an indispensable part of the team within weeks. The quality of work is outstanding.",
-    author: "James T.",
-    role: "Founder, Consulting Firm",
-  },
-  {
-    quote:
-      "What sets Wildevera apart is the heart behind it. You're not just getting help — you're part of something meaningful.",
-    author: "Linda R.",
-    role: "Small Business Owner",
-  },
-];
+const TESTIMONIALS: Testimonial[] = [];
 
 const STATS = [
-  { value: "200+", label: "Businesses Served" },
-  { value: "95%", label: "Client Retention Rate" },
-  { value: "48hr", label: "Average Match Time" },
+  { value: "48hr", label: "Match turnaround commitment" },
   { value: "100%", label: "English-Speaking VAs" },
+  { value: "U.S.", label: "Raised, Tranied, and culturally fluent " },
+  { value: "1:1", label: "Dedicated matching support" },
 ];
 
 // ─── Utility ──────────────────────────────────────────────────────────────────
@@ -414,10 +396,30 @@ function HeroSection() {
         backgroundColor: "#1F3A34",
         position: "relative",
         display: "flex",
-        alignItems: "center",
-        overflow: "hidden",
+        flexDirection: "column", // column so scroll indicator sits at bottom naturally
+        justifyContent: "center",
       }}
     >
+      <style>{`
+        @keyframes scrollPulse {
+          0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+          60%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+          100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
+        }
+        @keyframes scrollLabelFloat {
+          0%, 100% { transform: translateY(0); opacity: 0.5; }
+          50%       { transform: translateY(4px); opacity: 1; }
+        }
+        @media (max-width: 960px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .stats-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+      `}</style>
+
       {/* Decorative landscape silhouette */}
       <div
         style={{
@@ -428,6 +430,7 @@ function HeroSection() {
           height: "45%",
           overflow: "hidden",
           opacity: 0.15,
+          pointerEvents: "none",
         }}
       >
         <svg
@@ -452,29 +455,39 @@ function HeroSection() {
       <div
         style={{
           position: "absolute",
-          top: "10%",
-          right: "5%",
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          border: "1px solid rgba(194,164,109,0.2)",
+          inset: 0,
           pointerEvents: "none",
+          zIndex: 0,
+          overflow: "hidden",
         }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          top: "15%",
-          right: "8%",
-          width: 380,
-          height: 380,
-          borderRadius: "50%",
-          border: "1px solid rgba(194,164,109,0.12)",
-          pointerEvents: "none",
-        }}
-      />
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: "10%",
+            right: "5%",
+            width: 500,
+            height: 500,
+            borderRadius: "50%",
+            border: "1px solid rgba(194,164,109,0.2)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "15%",
+            right: "8%",
+            width: 380,
+            height: 380,
+            borderRadius: "50%",
+            border: "1px solid rgba(194,164,109,0.12)",
+          }}
+        />
+      </div>
 
+      {/* Main content grid — grows naturally, never clipped */}
       <div
+        className="hero-grid"
         style={{
           maxWidth: 1280,
           margin: "0 auto",
@@ -487,13 +500,12 @@ function HeroSection() {
           alignItems: "center",
           width: "100%",
         }}
-        className="hero-grid"
       >
         {/* Left: Copy */}
         <div>
           <p
             style={{
-              fontFamily: "'Cormorant Garamond', 'Georgia', serif",
+              fontFamily: "'Cormorant Garamond'",
               fontStyle: "italic",
               color: "#C2A46D",
               fontSize: "1.1rem",
@@ -528,10 +540,10 @@ function HeroSection() {
               marginBottom: "2.5rem",
             }}
           >
-            We connect U.S. small businesses with skilled, English-speaking
-            virtual assistants — people whose lives have been disrupted by
-            deportation — through dignified remote work and professional
-            training.
+            We match U.S. small businesses with virtual assistants who think,
+            speak, and work like the American professionals they are —
+            delivering reliable, native-English support and the cultural fluency
+            your business deserves.
           </p>
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <a
@@ -544,7 +556,7 @@ function HeroSection() {
                 textDecoration: "none",
                 fontSize: "0.875rem",
                 fontWeight: 700,
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Inter'",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
                 transition: "all 0.2s",
@@ -559,7 +571,7 @@ function HeroSection() {
                 (e.target as HTMLElement).style.transform = "translateY(0)";
               }}
             >
-              Hire a VA Today
+              Find a VA Today
             </a>
             <a
               href="#about"
@@ -579,12 +591,12 @@ function HeroSection() {
               }}
               onMouseEnter={(e) => {
                 (e.target as HTMLElement).style.borderColor =
-                  "rgba(194,164,109,0.6)";
+                  "rgba(194,164,109)";
                 (e.target as HTMLElement).style.color = "#C2A46D";
               }}
               onMouseLeave={(e) => {
                 (e.target as HTMLElement).style.borderColor =
-                  "rgba(245,242,236,0.4)";
+                  "rgba(245,242,236)";
                 (e.target as HTMLElement).style.color = "#F5F2EC";
               }}
             >
@@ -595,12 +607,12 @@ function HeroSection() {
 
         {/* Right: Stats */}
         <div
+          className="stats-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "1rem",
           }}
-          className="stats-grid"
         >
           {STATS.map((stat, i) => (
             <div
@@ -641,17 +653,18 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — in flow, not absolutely positioned */}
       <div
         style={{
-          position: "absolute",
-          bottom: "2rem",
-          left: "50%",
-          transform: "translateX(-50%)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           gap: 8,
+          paddingBottom: "2rem",
+          marginTop: "auto",
+          position: "relative",
+          zIndex: 2,
+          pointerEvents: "none",
         }}
       >
         <span
@@ -661,6 +674,7 @@ function HeroSection() {
             letterSpacing: "0.15em",
             color: "rgba(245,242,236,0.6)",
             textTransform: "uppercase",
+            animation: "scrollLabelFloat 2s ease-in-out infinite",
           }}
         >
           Scroll
@@ -669,9 +683,23 @@ function HeroSection() {
           style={{
             width: 1,
             height: 40,
-            backgroundColor: "rgba(194,164,109,0.5)",
+            background: "rgba(194,164,109,0.15)",
+            overflow: "hidden",
+            position: "relative",
           }}
-        />
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: 1,
+              height: "100%",
+              background: "rgba(194,164,109,0.8)",
+              animation: "scrollPulse 1.8s ease-in-out infinite",
+            }}
+          />
+        </div>
       </div>
     </section>
   );
@@ -781,7 +809,7 @@ function MissionSection() {
               marginBottom: "1.5rem",
             }}
           >
-            Connecting Capable People With Meaningful Work
+            Rooted in dignity. Driven by purpose. Building brighter tomorrows.
           </h2>
           <p
             style={{
@@ -794,9 +822,9 @@ function MissionSection() {
           >
             Wildevera exists at the intersection of opportunity and compassion.
             We partner with U.S. small businesses who need reliable, skilled
-            support — and we connect them with English-speaking workers whose
-            lives have been disrupted by deportation but whose talent and drive
-            remain unchanged.
+            support — and we connect them with native-English-speaking
+            professionals raised in the United States, whose talent, work ethic,
+            and cultural fluency translate seamlessly into your business.
           </p>
           <p
             style={{
@@ -808,8 +836,9 @@ function MissionSection() {
             }}
           >
             Through professional virtual assistant training, thoughtful
-            placement, and an ongoing support ecosystem, we create dignified
-            pathways to stable income — for people who deserve exactly that.
+            matching, and ongoing support, we create dignified pathways to
+            meaningful careers — for people whose circumstances have changed,
+            but whose drive and capability never will.
           </p>
           <a
             href="#how-it-works"
