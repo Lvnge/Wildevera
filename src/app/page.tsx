@@ -2461,7 +2461,7 @@ function Footer() {
           </div>
 
           {/* Link columns — Portal removed until ready to launch */}
-          {[
+          {/*{[
             {
               title: "Company",
               links: [
@@ -2538,7 +2538,7 @@ function Footer() {
         </div>
 
         {/* Bottom band: legal links + copyright */}
-        <div
+          {/*<div
           style={{
             borderTop: "1px solid rgba(245,242,236,0.08)",
             padding: "1.25rem 0 1.5rem",
@@ -2562,7 +2562,7 @@ function Footer() {
           </p>
 
           {/* Legal links */}
-          <div
+          {/*          <div
             style={{
               display: "flex",
               gap: "1.5rem",
