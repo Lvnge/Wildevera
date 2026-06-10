@@ -93,7 +93,7 @@ const STEPS: Step[] = [
     number: "02",
     title: "We Match You",
     description:
-      "We match you with a pre-vetted virtual assistant; an American-raised native-English speaker, whose skills align with your specific needs.",
+      "We match you with a vetted virtual assistant who speaks native English, knows American work culture, and fits your business from day one.",
   },
   {
     number: "03",
