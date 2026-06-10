@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState } from "react";
+import { SharedNavbar, SharedFooter } from "@/components/wildevera/shared";
 import {
   Phone,
   Mail,
@@ -15,6 +15,10 @@ import {
   Target,
   Leaf,
   LucideIcon,
+  GraduationCap,
+  Users,
+  Handshake,
+  Heart,
 } from "lucide-react";
 
 // ─── Branding Colors ─────────────────────────────────────────────────────────────
@@ -26,11 +30,6 @@ import {
 // #6E7A5C  Sage
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-interface NavItem {
-  label: string;
-  href: string;
-  children?: { label: string; href: string }[];
-}
 
 interface Service {
   icon: LucideIcon;
@@ -43,16 +42,6 @@ interface Step {
   title: string;
   description: string;
 }
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
-const NAV_ITEMS: NavItem[] = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "For Businesses", href: "#how-it-works" },
-  { label: "Why Wildevera", href: "#why-wildevera" },
-  { label: "Backed By", href: "#backed-by" },
-  { label: "Contact", href: "#contact" },
-];
 
 const SERVICES: Service[] = [
   {
@@ -151,6 +140,22 @@ interface Advisor {
 
 const ADVISORS: Advisor[] = [
   {
+    name: "Amanda Turner",
+    title: "Owner of El Gato Feo Café & Estrellita's BnB",
+    affiliation: "@TheRealAmandaTurner",
+    quote:
+      "What Jessica is building with Wildevera is rare: a business that pairs real economic opportunity with real human respect. Small business owners need this. Displaced workers need this. I believe in the vision, and I believe in the woman behind it.",
+    headshot: "/headshots/AmandaTurner.jpg",
+  },
+  {
+    name: "Maria Reyes",
+    title: "Mentor & Co-Owner",
+    affiliation: "The Bubble Boys",
+    quote:
+      "In a world full of businesses chasing profit, Jessica is chasing purpose — and building profit around it. Wildevera is rare. The mission is real. And I'm honored to be associated with it.",
+    headshot: "/headshots/MariaReyes.jpg",
+  },
+  {
     name: "Shawn M.",
     title: "Attorney — Advisory Board Member",
     affiliation: "The Planning Done Right Guy™ · Future Done Right™ Show",
@@ -162,18 +167,6 @@ const ADVISORS: Advisor[] = [
     affiliation: "Community Liaison Migrant Education, SCDoE",
     quote: "[Quote pending]",
   },
-  {
-    name: "Maria Reyes",
-    title: "Mentor & Co-Owner",
-    affiliation: "The Bubble Boys",
-    quote:
-      "In a world full of businesses chasing profit, Jessica is chasing purpose — and building profit around it. Wildevera is rare. The mission is real. And I'm honored to be associated with it.",
-  },
-  {
-    name: "Amanda Turner",
-    title: "Small Business Owner & Mentor",
-    quote: "[Quote pending]",
-  },
 ];
 
 const STATS = [
@@ -183,268 +176,6 @@ const STATS = [
   { value: "1:1", label: "Dedicated matching support" },
 ];
 
-// ─── Utility ──────────────────────────────────────────────────────────────────
-function useScrolled(threshold = 20) {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > threshold);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [threshold]);
-  return scrolled;
-}
-
-// ─── Navbar ───────────────────────────────────────────────────────────────────
-function Navbar() {
-  const scrolled = useScrolled();
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-
-  return (
-    <header
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        backgroundColor: "#F5F2EC",
-        borderBottom: "1px solid rgba(31,58,52,0.1)",
-      }}
-    >
-      <nav
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          padding: "0 2rem",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: scrolled ? 64 : 80,
-          transition: "height 0.3s ease",
-        }}
-      >
-        {/* Logo */}
-        <a href="#" style={{ textDecoration: "none" }}>
-          <Image
-            src="/logoNav.png"
-            alt="Wildevera"
-            height={60}
-            width={220}
-            priority
-          />
-        </a>
-
-        {/* Desktop Nav */}
-        <div
-          className="desktop-nav"
-          style={{ display: "flex", alignItems: "center", gap: "2rem" }}
-        >
-          {NAV_ITEMS.map((item) => (
-            <div
-              key={item.label}
-              style={{ position: "relative" }}
-              onMouseEnter={() => item.children && setOpenDropdown(item.label)}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <a
-                href={item.href}
-                style={{
-                  color: "#2B2B2B",
-                  textDecoration: "none",
-                  fontSize: "0.875rem",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 500,
-                  transition: "color 0.2s",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.25rem",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.target as HTMLElement).style.color = "#C2A46D")
-                }
-                onMouseLeave={(e) =>
-                  ((e.target as HTMLElement).style.color = "#2B2B2B")
-                }
-              >
-                {item.label}
-                {item.children && (
-                  <span style={{ fontSize: "0.6rem", opacity: 0.7 }}>▾</span>
-                )}
-              </a>
-              {item.children && openDropdown === item.label && (
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "calc(100% + 0.75rem)",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    backgroundColor: "#1F3A34",
-                    border: "1px solid rgba(194,164,109,0.3)",
-                    borderRadius: 8,
-                    padding: "0.5rem 0",
-                    minWidth: 220,
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-                  }}
-                >
-                  {item.children.map((child) => (
-                    <a
-                      key={child.label}
-                      href={child.href}
-                      style={{
-                        display: "block",
-                        padding: "0.6rem 1.25rem",
-                        color: "rgba(245,242,236,0.85)",
-                        textDecoration: "none",
-                        fontSize: "0.85rem",
-                        fontFamily: "'Inter', sans-serif",
-                        transition: "all 0.15s",
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.target as HTMLElement).style.color = "#C2A46D";
-                        (e.target as HTMLElement).style.paddingLeft = "1.5rem";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.target as HTMLElement).style.color =
-                          "rgba(245,242,236,0.85)";
-                        (e.target as HTMLElement).style.paddingLeft = "1.25rem";
-                      }}
-                    >
-                      {child.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-          <a
-            href="#contact"
-            style={{
-              backgroundColor: "#C2A46D",
-              color: "#1F3A34",
-              padding: "0.6rem 1.5rem",
-              borderRadius: 4,
-              textDecoration: "none",
-              fontSize: "0.875rem",
-              fontWeight: 700,
-              fontFamily: "'Inter', sans-serif",
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-              transition: "all 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              (e.target as HTMLElement).style.backgroundColor = "#d4b67e";
-              (e.target as HTMLElement).style.transform = "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              (e.target as HTMLElement).style.backgroundColor = "#C2A46D";
-              (e.target as HTMLElement).style.transform = "translateY(0)";
-            }}
-          >
-            Get Started
-          </a>
-        </div>
-
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="mobile-menu-btn"
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: 8,
-          }}
-          aria-label="Toggle menu"
-        >
-          <div
-            style={{
-              width: 24,
-              height: 2,
-              backgroundColor: "#1F3A34",
-              marginBottom: 5,
-              transition: "all 0.3s",
-              transform: mobileOpen
-                ? "rotate(45deg) translate(5px, 5px)"
-                : "none",
-            }}
-          />
-          <div
-            style={{
-              width: 24,
-              height: 2,
-              backgroundColor: "#1F3A34",
-              marginBottom: 5,
-              opacity: mobileOpen ? 0 : 1,
-              transition: "opacity 0.3s",
-            }}
-          />
-          <div
-            style={{
-              width: 24,
-              height: 2,
-              backgroundColor: "#1F3A34",
-              transition: "all 0.3s",
-              transform: mobileOpen
-                ? "rotate(-45deg) translate(5px, -5px)"
-                : "none",
-            }}
-          />
-        </button>
-      </nav>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div
-          style={{
-            backgroundColor: "#0f1f1c",
-            padding: "1rem 2rem 2rem",
-            borderTop: "1px solid rgba(194,164,109,0.2)",
-          }}
-        >
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => setMobileOpen(false)}
-              style={{
-                display: "block",
-                color: "rgba(245,242,236,0.85)",
-                textDecoration: "none",
-                padding: "0.75rem 0",
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.95rem",
-                borderBottom: "1px solid rgba(245,242,236,0.1)",
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            onClick={() => setMobileOpen(false)}
-            style={{
-              display: "inline-block",
-              marginTop: "1.5rem",
-              backgroundColor: "#C2A46D",
-              color: "#1F3A34",
-              padding: "0.75rem 2rem",
-              borderRadius: 4,
-              textDecoration: "none",
-              fontWeight: 700,
-              fontSize: "0.875rem",
-              fontFamily: "'Inter', sans-serif",
-            }}
-          >
-            Get Started
-          </a>
-        </div>
-      )}
-    </header>
-  );
-}
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function HeroSection() {
   return (
@@ -1165,7 +896,7 @@ function TestimonialsSection() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', ",
+                fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
                 fontWeight: 700,
                 color: "#F5F2EC",
@@ -1215,7 +946,7 @@ function TestimonialsSection() {
                 </div>
                 <h3
                   style={{
-                    fontFamily: "'Playfair Display', ",
+                    fontFamily: "'Playfair Display', Georgia, serif",
                     fontSize: "1.2rem",
                     fontWeight: 700,
                     color: "#1F3A34",
@@ -1261,7 +992,7 @@ function TestimonialsSection() {
           </div>
 
           {/* Backed By */}
-          <section id="backed-by">
+          <div id="backed-by">
             <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
               <p
                 style={{
@@ -1278,7 +1009,7 @@ function TestimonialsSection() {
               </p>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', ",
+                  fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
                   fontWeight: 700,
                   color: "#F5F2EC",
@@ -1292,7 +1023,7 @@ function TestimonialsSection() {
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "1rem",
-                  color: "#8A7F78",
+                  color: "rgba(245,242,236,0.6)",
                   maxWidth: 480,
                   margin: "0 auto",
                   lineHeight: 1.8,
@@ -1318,7 +1049,7 @@ function TestimonialsSection() {
                     backgroundColor: "rgba(245,242,236,0.08)",
                     borderRadius: 8,
                     borderLeft: "3px solid #C2A46D",
-                    padding: "1.75rem 1.5rem",
+                    padding: "2rem 1.75rem",
                     display: "flex",
                     flexDirection: "column",
                     gap: "0.35rem",
@@ -1364,7 +1095,7 @@ function TestimonialsSection() {
                     <div>
                       <div
                         style={{
-                          fontFamily: "'Playfair Display', ",
+                          fontFamily: "'Playfair Display', Georgia, serif",
                           fontWeight: 700,
                           color: "#F5F2EC",
                           fontSize: "1rem",
@@ -1377,7 +1108,7 @@ function TestimonialsSection() {
                         style={{
                           fontFamily: "'Inter', sans-serif",
                           fontSize: "0.78rem",
-                          color: "#8A7F78",
+                          color: "rgba(245,242,236,0.6)",
                           lineHeight: 1.5,
                         }}
                       >
@@ -1399,31 +1130,259 @@ function TestimonialsSection() {
                   </div>
 
                   {a.quote !== "[Quote pending]" && (
-                    <p
+                    <div
                       style={{
-                        fontFamily: "'Cormorant Garamond',",
-                        fontSize: "0.95rem",
-                        fontStyle: "italic",
-                        color: "#F5F2EC",
-                        lineHeight: 1.75,
                         marginTop: "0.75rem",
                         borderTop: "1px solid #6E7A5C",
                         paddingTop: "0.75rem",
                       }}
                     >
-                      &ldquo;{a.quote}&rdquo;
-                    </p>
+                      <div
+                        style={{
+                          fontFamily: "Georgia, serif",
+                          fontSize: "2rem",
+                          color: "#C2A46D",
+                          lineHeight: 1,
+                          marginBottom: "0.25rem",
+                        }}
+                      >
+                        &ldquo;
+                      </div>
+                      <p
+                        style={{
+                          fontFamily: "'Cormorant Garamond', Georgia, serif",
+                          fontSize: "1.05rem",
+                          fontStyle: "italic",
+                          color: "#F5F2EC",
+                          lineHeight: 1.85,
+                        }}
+                      >
+                        {a.quote}&rdquo;
+                      </p>
+                    </div>
                   )}
                 </div>
               ))}
             </div>
-          </section>
+          </div>
         </div>
       </section>
     </>
   );
 }
+// ─── Get Involved Section ─────────────────────────────────────────────────────
+// INSERT THIS BETWEEN <TestimonialsSection /> AND <CtaBanner /> in page.tsx
 
+function GetInvolvedSection() {
+  const cards = [
+    {
+      eyebrow: "For Businesses",
+      title: "Work With a VA",
+      description: "Get reliable support that understands your business.",
+      cta: "Get Started",
+      href: "/work-with-us",
+      bg: "#1F3A34",
+      textColor: "#F5F2EC",
+      icon: Handshake,
+    },
+    {
+      eyebrow: "Make an Impact",
+      title: "Sponsor a Future",
+      description: "Help someone rebuild with dignity.",
+      cta: "Become a Sponsor",
+      href: "/sponsor",
+      bg: "rgba(245,242,236,0.06)",
+      textColor: "#F5F2EC",
+      icon: Heart,
+    },
+    {
+      eyebrow: "Share Your Experience",
+      title: "Guide Someone Forward",
+      description: "Share your experience with someone starting again.",
+      cta: "Apply to Mentor",
+      href: "/mentor",
+      bg: "#6E7A5C",
+      textColor: "#F5F2EC",
+      icon: GraduationCap,
+    },
+    {
+      eyebrow: "Shape the Mission",
+      title: "Join the Advisory Network",
+      description: "Help shape the future of this work.",
+      cta: "Get Involved",
+      href: "/advisor",
+      bg: "#F5F2EC",
+      textColor: "#1F3A34",
+      icon: Users,
+    },
+  ];
+
+  return (
+    <section
+      id="get-involved"
+      style={{
+        backgroundColor: "#2B2B2B",
+        padding: "6rem 2rem",
+      }}
+    >
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.8rem",
+              letterSpacing: "0.15em",
+              color: "#C2A46D",
+              textTransform: "uppercase",
+              marginBottom: "1rem",
+              fontWeight: 600,
+            }}
+          >
+            Backed By Purpose
+          </p>
+          <h2
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontSize: "clamp(1.8rem, 3vw, 2.5rem)",
+              fontWeight: 700,
+              color: "#F5F2EC",
+              lineHeight: 1.25,
+              marginBottom: "1rem",
+            }}
+          >
+            This Work Moves Forward Because People Step In
+          </h2>
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "1rem",
+              color: "rgba(245,242,236,0.65)",
+              maxWidth: 480,
+              margin: "0 auto",
+              lineHeight: 1.8,
+            }}
+          >
+            There are more ways to be part of Wildevera than just hiring a VA.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: "1.25rem",
+          }}
+        >
+          {cards.map((card, i) => (
+            <a
+              key={i}
+              href={card.href}
+              style={{
+                backgroundColor: card.bg,
+                borderRadius: 8,
+                padding: "2.25rem 2rem",
+                textDecoration: "none",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+                border:
+                  card.bg === "#F5F2EC"
+                    ? "1px solid rgba(31,58,52,0.12)"
+                    : "1px solid transparent",
+                transition:
+                  "transform 0.2s, box-shadow 0.2s, border-color 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform =
+                  "translateY(-4px)";
+                (e.currentTarget as HTMLElement).style.boxShadow =
+                  "0 12px 40px rgba(0,0,0,0.15)";
+                (e.currentTarget as HTMLElement).style.borderColor = "#C2A46D";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform =
+                  "translateY(0)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                (e.currentTarget as HTMLElement).style.borderColor =
+                  card.bg === "#F5F2EC" ? "rgba(31,58,52,0.12)" : "transparent";
+              }}
+            >
+              {/* Icon */}
+              <card.icon size={26} color="#C2A46D" strokeWidth={1.5} />
+
+              {/* Eyebrow */}
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.15em",
+                  color: "#C2A46D",
+                  textTransform: "uppercase",
+                  fontWeight: 600,
+                  margin: 0,
+                }}
+              >
+                {card.eyebrow}
+              </p>
+
+              {/* Title */}
+              <h3
+                style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "1.3rem",
+                  fontWeight: 700,
+                  color: card.textColor,
+                  lineHeight: 1.25,
+                  margin: 0,
+                }}
+              >
+                {card.title}
+              </h3>
+
+              {/* Description */}
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.9rem",
+                  color:
+                    card.bg === "#F5F2EC" ? "#8A7F78" : "rgba(245,242,236,0.7)",
+                  lineHeight: 1.8,
+                  margin: 0,
+                  flex: 1,
+                }}
+              >
+                {card.description}
+              </p>
+
+              {/* CTA */}
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.8rem",
+                  fontWeight: 700,
+                  color: "#C2A46D",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  marginTop: "0.5rem",
+                  borderBottom: "1px solid rgba(194,164,109,0.4)",
+                  paddingBottom: "2px",
+                  width: "fit-content",
+                }}
+              >
+                {card.cta} →
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 // ─── CTA Banner ───────────────────────────────────────────────────────────────
 function CtaBanner() {
   return (
@@ -2400,241 +2359,22 @@ function ContactSection() {
   );
 }
 
-// ─── Footer ───────────────────────────────────────────────────────────────────
-function Footer() {
-  return (
-    <footer
-      style={{
-        backgroundColor: "#14271F",
-        padding: "4rem 2rem 0",
-        borderTop: "1px solid rgba(194,164,109,0.15)",
-      }}
-    >
-      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr 1fr",
-            gap: "3rem",
-            marginBottom: "3rem",
-            paddingBottom: "3rem",
-            borderBottom: "1px solid rgba(245,242,236,0.08)",
-          }}
-          className="footer-grid"
-        >
-          {/* Brand */}
-          <div>
-            <div
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "1.5rem",
-                fontWeight: 700,
-                color: "#F5F2EC",
-                marginBottom: "1rem",
-              }}
-            >
-              Wildevera
-            </div>
-            <p
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontStyle: "italic",
-                color: "#C2A46D",
-                fontSize: "0.95rem",
-                marginBottom: "1rem",
-                lineHeight: 1.6,
-              }}
-            >
-              Where conviction meets compassion
-            </p>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.85rem",
-                color: "rgba(245,242,236,0.4)",
-                lineHeight: 1.8,
-              }}
-            >
-              Virtual services & career-building courses for a brighter
-              tomorrow.
-            </p>
-          </div>
-
-          {/* Link columns — Portal removed until ready to launch */}
-          {/*{[
-            {
-              title: "Company",
-              links: [
-                // Placeholder: add real hrefs before launch or remove entries
-                // { label: "About", href: "/about" },
-                // { label: "Our Mission", href: "/mission" },
-                // { label: "Stories", href: "/stories" },
-                // { label: "Contact", href: "/contact" },
-              ],
-            },
-            {
-              title: "Services",
-              links: [
-                // { label: "Administrative", href: "/services/administrative" },
-                // { label: "Marketing", href: "/services/marketing" },
-                // { label: "Operations", href: "/services/operations" },
-                // { label: "Projects", href: "/services/projects" },
-              ],
-            },
-          ].map((col) => (
-            <div key={col.title}>
-              <div
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  color: "#C2A46D",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  marginBottom: "1rem",
-                }}
-              >
-                {col.title}
-              </div>
-              {col.links.length === 0 ? (
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.8rem",
-                    color: "rgba(245,242,236,0.2)",
-                    fontStyle: "italic",
-                  }}
-                >
-                  Coming soon
-                </p>
-              ) : (
-                col.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    style={{
-                      display: "block",
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.875rem",
-                      color: "rgba(245,242,236,0.5)",
-                      textDecoration: "none",
-                      marginBottom: "0.6rem",
-                      transition: "color 0.2s",
-                    }}
-                    onMouseEnter={(e) =>
-                      ((e.target as HTMLElement).style.color = "#F5F2EC")
-                    }
-                    onMouseLeave={(e) =>
-                      ((e.target as HTMLElement).style.color =
-                        "rgba(245,242,236,0.5)")
-                    }
-                  >
-                    {link.label}
-                  </a>
-                ))
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom band: legal links + copyright */}
-          {/*<div
-          style={{
-            borderTop: "1px solid rgba(245,242,236,0.08)",
-            padding: "1.25rem 0 1.5rem",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "0.75rem",
-          }}
-        >
-          {/* Copyright — dynamic year */}
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem",
-              color: "rgba(245,242,236,0.3)",
-              margin: 0,
-            }}
-          >
-            © {new Date().getFullYear()} Wildevera. All rights reserved.
-          </p>
-
-          {/* Legal links */}
-          {/*          <div
-            style={{
-              display: "flex",
-              gap: "1.5rem",
-              flexWrap: "wrap",
-            }}
-          >
-            {[
-              // Uncomment and add real hrefs before launch:
-              // { label: "Privacy Policy", href: "/privacy" },
-              // { label: "Terms of Service", href: "/terms" },
-              // { label: "Cookie Policy", href: "/cookies" },
-            ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.78rem",
-                  color: "rgba(245,242,236,0.3)",
-                  textDecoration: "none",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.target as HTMLElement).style.color =
-                    "rgba(245,242,236,0.7)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.target as HTMLElement).style.color =
-                    "rgba(245,242,236,0.3)")
-                }
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-
-          {/* Brand tagline — update if courses aren't live yet */}
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8rem",
-              color: "rgba(245,242,236,0.3)",
-              margin: 0,
-            }}
-          >
-            {/* 
-              Switch to the line below if courses aren't live at launch:
-              Virtual Services · Mission-Driven Matching · Dignified Work
-            */}
-            Virtual Services · Career-Building Courses · Dignified Work
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 // ─── Root ─────────────────────────────────────────────────────────────────────
 export default function WildeveraLanding() {
   return (
     <>
-      <Navbar />
+      <SharedNavbar />
       <main>
         <HeroSection />
         <MissionSection />
         <ServicesSection />
         <HowItWorksSection />
         <TestimonialsSection />
+        <GetInvolvedSection />
         <CtaBanner />
         <ContactSection />
       </main>
-      <Footer />
+      <SharedFooter />
     </>
   );
 }
