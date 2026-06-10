@@ -12,6 +12,7 @@ import {
   Languages,
 } from "lucide-react";
 import { SharedNavbar, SharedFooter } from "@/components/wildevera/shared";
+import { AlsoExplore } from "@/components/wildevera/AlsoExplore";
 import Link from "next/link";
 
 const SERVICES = [
@@ -509,6 +510,7 @@ export default function WorkWithUsPage() {
           </div>
         </section>
       </main>
+      <AlsoExplore currentPath="/work-with-us" />
       <SharedFooter />
     </>
   );

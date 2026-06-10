@@ -2,6 +2,7 @@
 
 import { Leaf } from "lucide-react";
 import { SharedNavbar, SharedFooter } from "@/components/wildevera/shared";
+import { AlsoExplore } from "@/components/wildevera/AlsoExplore";
 import Link from "next/link";
 
 const NETWORK_PERKS = [
@@ -461,6 +462,7 @@ export default function AdvisorPage() {
           </div>
         </section>
       </main>
+      <AlsoExplore currentPath="/advisor" />
       <SharedFooter />
     </>
   );

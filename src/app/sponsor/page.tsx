@@ -2,6 +2,7 @@
 
 import { Leaf } from "lucide-react";
 import { SharedNavbar, SharedFooter } from "@/components/wildevera/shared";
+import { AlsoExplore } from "@/components/wildevera/AlsoExplore";
 import Link from "next/link";
 
 const BARRIERS = [
@@ -608,6 +609,7 @@ export default function SponsorPage() {
           </div>
         </section>
       </main>
+      <AlsoExplore currentPath="/sponsor" />
       <SharedFooter />
     </>
   );
