@@ -697,19 +697,19 @@ export default function FounderPage() {
                   audience:
                     "You're a business owner ready for capable, mission-aligned support that elevates your work.",
                   cta: "Schedule a Clarity Call",
-                  href: "/#contact",
+                  href: "https://calendly.com/hello-wildevera",
                 },
                 {
                   audience:
                     "You're a displaced or deported professional ready to rebuild.",
                   cta: "Apply to Join Our Network",
-                  href: "/build-my-career",
+                  href: "https://form.jotform.com/261294721832862",
                 },
                 {
                   audience:
                     "You believe in this work and want to help it grow — as an advisor, partner, or community advocate.",
                   cta: "Get In Touch",
-                  href: "/#contact",
+                  href: "https://form.jotform.com/261294721832862",
                 },
                 {
                   audience:
