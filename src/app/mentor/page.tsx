@@ -354,16 +354,16 @@ export default function MentorPage() {
           id="mentor-form"
           style={{ backgroundColor: "#F5F2EC", padding: "5rem 2rem" }}
         >
-          <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
+          <div style={{ maxWidth: 580, margin: "0 auto", textAlign: "center" }}>
             <p
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.8rem",
-                letterSpacing: "0.15em",
+                fontSize: "0.75rem",
+                letterSpacing: "0.18em",
                 color: "#C2A46D",
                 textTransform: "uppercase",
                 marginBottom: "1rem",
-                fontWeight: 600,
+                fontWeight: 700,
               }}
             >
               Apply to Mentor
@@ -371,10 +371,10 @@ export default function MentorPage() {
             <h2
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: "clamp(1.8rem, 3vw, 2.4rem)",
+                fontSize: "clamp(2rem, 4vw, 2.8rem)",
                 fontWeight: 700,
                 color: "#1F3A34",
-                lineHeight: 1.25,
+                lineHeight: 1.2,
                 marginBottom: "1.25rem",
               }}
             >
@@ -384,8 +384,8 @@ export default function MentorPage() {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
-                color: "#8A7F78",
-                lineHeight: 1.8,
+                color: "#6B6360",
+                lineHeight: 1.85,
                 marginBottom: "2.5rem",
               }}
             >
@@ -393,92 +393,60 @@ export default function MentorPage() {
               your application and match you with a VA who can benefit from
               exactly what you bring to the table.
             </p>
-            <div
+
+            <Link
+              href="https://form.jotform.com/261294721832862"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                backgroundColor: "#FFFFFF",
-                border: "1px solid rgba(31,58,52,0.1)",
-                borderRadius: 8,
-                padding: "3rem",
-                display: "flex",
-                flexDirection: "column",
+                display: "inline-flex",
                 alignItems: "center",
-                gap: "1rem",
+                gap: "0.55rem",
+                backgroundColor: "#1F3A34",
+                color: "#F5F2EC",
+                padding: "0.9rem 2rem",
+                borderRadius: 4,
+                textDecoration: "none",
+                fontSize: "0.8rem",
+                fontWeight: 700,
+                fontFamily: "'Inter', sans-serif",
+                letterSpacing: "0.09em",
+                textTransform: "uppercase",
+                transition: "background 0.18s",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor =
+                  "#2a4f47";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor =
+                  "#1F3A34";
               }}
             >
-              <div
+              Apply now →
+            </Link>
+
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.8rem",
+                color: "#9A9490",
+                lineHeight: 1.6,
+                marginTop: "1.5rem",
+              }}
+            >
+              Questions? Reach us at{" "}
+              <a
+                href="mailto:hello@wildevera.com"
                 style={{
-                  width: 56,
-                  height: 56,
-                  borderRadius: "50%",
-                  backgroundColor: "rgba(194,164,109,0.12)",
-                  border: "1px solid rgba(194,164,109,0.3)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Leaf size={22} color="#C2A46D" strokeWidth={1.5} />
-              </div>
-              <p
-                style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
-                  fontSize: "1.2rem",
-                  fontWeight: 700,
-                  color: "#1F3A34",
-                  margin: 0,
-                }}
-              >
-                Application Form Coming Soon
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.9rem",
-                  color: "#8A7F78",
-                  lineHeight: 1.7,
-                  margin: 0,
-                }}
-              >
-                In the meantime, reach us at{" "}
-                <a
-                  href="mailto:hello@wildevera.com"
-                  style={{ color: "#C2A46D", fontWeight: 600 }}
-                >
-                  hello@wildevera.com
-                </a>{" "}
-                — include your background and availability.
-              </p>
-              <Link
-                href="/#contact"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.6rem",
-                  backgroundColor: "#1F3A34",
-                  color: "#F5F2EC",
-                  padding: "0.9rem 2rem",
-                  borderRadius: 4,
+                  color: "#C2A46D",
+                  fontWeight: 600,
                   textDecoration: "none",
-                  fontSize: "0.8rem",
-                  fontWeight: 700,
-                  fontFamily: "'Inter', sans-serif",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  transition: "all 0.2s",
-                  marginTop: "0.5rem",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor =
-                    "#2a4f47";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor =
-                    "#1F3A34";
                 }}
               >
-                Contact Us Now
-              </Link>
-            </div>
+                hello@wildevera.com
+              </a>
+            </p>
           </div>
         </section>
       </main>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Leaf } from "lucide-react";
+//import { Leaf } from "lucide-react";
 import { SharedNavbar, SharedFooter } from "@/components/wildevera/shared";
 import Link from "next/link";
 
@@ -307,16 +307,16 @@ export default function BuildMyCareerPage() {
             textAlign: "center",
           }}
         >
-          <div style={{ maxWidth: 600, margin: "0 auto" }}>
+          <div style={{ maxWidth: 580, margin: "0 auto" }}>
             <p
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.8rem",
-                letterSpacing: "0.15em",
+                fontSize: "0.75rem",
+                letterSpacing: "0.18em",
                 color: "#C2A46D",
                 textTransform: "uppercase",
                 marginBottom: "1rem",
-                fontWeight: 600,
+                fontWeight: 700,
               }}
             >
               Ready to Begin
@@ -324,10 +324,10 @@ export default function BuildMyCareerPage() {
             <h2
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: "clamp(1.8rem, 3vw, 2.4rem)",
+                fontSize: "clamp(2rem, 4vw, 2.8rem)",
                 fontWeight: 700,
                 color: "#F5F2EC",
-                lineHeight: 1.25,
+                lineHeight: 1.2,
                 marginBottom: "1.25rem",
               }}
             >
@@ -338,7 +338,7 @@ export default function BuildMyCareerPage() {
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(245,242,236,0.65)",
-                lineHeight: 1.8,
+                lineHeight: 1.85,
                 marginBottom: "2.5rem",
               }}
             >
@@ -347,82 +347,59 @@ export default function BuildMyCareerPage() {
               to build something of your own.
             </p>
 
-            <div
+            <Link
+              href="https://form.jotform.com/261294721832862"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                display: "flex",
-                flexDirection: "column",
+                display: "inline-flex",
                 alignItems: "center",
-                gap: "1rem",
+                gap: "0.55rem",
+                backgroundColor: "#C2A46D",
+                color: "#1F3A34",
+                padding: "0.9rem 2rem",
+                borderRadius: 4,
+                textDecoration: "none",
+                fontSize: "0.8rem",
+                fontWeight: 700,
+                fontFamily: "'Inter', sans-serif",
+                letterSpacing: "0.09em",
+                textTransform: "uppercase",
+                transition: "background 0.18s",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor =
+                  "#d4b87e";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor =
+                  "#C2A46D";
               }}
             >
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.6rem",
-                  backgroundColor: "rgba(194,164,109,0.15)",
-                  color: "rgba(245,242,236,0.4)",
-                  padding: "1.1rem 3rem",
-                  borderRadius: 4,
-                  textDecoration: "none",
-                  fontSize: "0.875rem",
-                  fontWeight: 700,
-                  fontFamily: "'Inter', sans-serif",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  cursor: "not-allowed",
-                  border: "1px solid rgba(194,164,109,0.2)",
-                }}
-              >
-                <Leaf
-                  size={15}
-                  color="rgba(194,164,109,0.4)"
-                  strokeWidth={1.5}
-                />
-                Submit Interest Form
-              </a>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.78rem",
-                  color: "rgba(245,242,236,0.35)",
-                  fontStyle: "italic",
-                }}
-              >
-                Interest form coming soon — check back shortly.
-              </p>
-            </div>
+              Submit Interest Form →
+            </Link>
 
-            <div
+            <p
               style={{
-                marginTop: "2.5rem",
-                paddingTop: "2rem",
-                borderTop: "1px solid rgba(245,242,236,0.08)",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.8rem",
+                color: "rgba(245,242,236,0.4)",
+                lineHeight: 1.6,
+                marginTop: "1.5rem",
               }}
             >
-              <p
+              Questions?{" "}
+              <Link
+                href="/#contact"
                 style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.9rem",
-                  color: "rgba(245,242,236,0.5)",
-                  lineHeight: 1.7,
+                  color: "#C2A46D",
+                  fontWeight: 600,
+                  textDecoration: "none",
                 }}
               >
-                Have questions in the meantime?{" "}
-                <Link
-                  href="/#contact"
-                  style={{
-                    color: "#C2A46D",
-                    fontWeight: 600,
-                    textDecoration: "none",
-                  }}
-                >
-                  Reach out directly →
-                </Link>
-              </p>
-            </div>
+                Reach out directly →
+              </Link>
+            </p>
           </div>
         </section>
       </main>

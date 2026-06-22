@@ -267,13 +267,8 @@ export function SharedNavbar() {
           ))}
 
           <Link
-            href="/#contact"
-            onClick={(e) =>
-              handleNavClick(
-                e as React.MouseEvent<HTMLAnchorElement>,
-                "/#contact",
-              )
-            }
+            href="https://form.jotform.com/261294721832862"
+            target="_blank"
             style={{
               backgroundColor: "#C2A46D",
               color: "#1F3A34",
@@ -400,12 +395,9 @@ export function SharedNavbar() {
             </div>
           ))}
           <Link
-            href="/#contact"
-            onClick={(e) => {
-              handleNavClick(
-                e as React.MouseEvent<HTMLAnchorElement>,
-                "/#contact",
-              );
+            href="https://form.jotform.com/261294721832862"
+            target="_blank"
+            onClick={() => {
               setMobileOpen(false);
             }}
             style={{

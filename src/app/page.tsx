@@ -833,7 +833,8 @@ function HowItWorksSection() {
 
         <div style={{ textAlign: "center" }}>
           <a
-            href="#contact"
+            href="https://calendly.com/hello-wildevera"
+            target="_blank"
             style={{
               display: "inline-block",
               backgroundColor: "#1F3A34",
@@ -1439,7 +1440,8 @@ function CtaBanner() {
         </p>
 
         <a
-          href="#contact"
+          href="https://calendly.com/hello-wildevera"
+          target="_blank"
           style={{
             display: "inline-flex",
             alignItems: "center",

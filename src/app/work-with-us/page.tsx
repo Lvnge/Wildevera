@@ -124,7 +124,8 @@ export default function WorkWithUsPage() {
               day-to-day operations.
             </p>
             <Link
-              href="/#contact"
+              href="https://calendly.com/hello-wildevera"
+              target="_blank"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -211,7 +212,8 @@ export default function WorkWithUsPage() {
                   — handled by someone who genuinely cares about doing it well.
                 </p>
                 <Link
-                  href="/#contact"
+                  href="https://calendly.com/hello-wildevera"
+                  target="_blank"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -472,7 +474,8 @@ export default function WorkWithUsPage() {
             </div>
             <div style={{ textAlign: "center" }}>
               <Link
-                href="/#contact"
+                href="https://calendly.com/hello-wildevera"
+                target="_blank"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
