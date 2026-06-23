@@ -2349,7 +2349,7 @@ function ContactSection() {
                       fontWeight: 600,
                     }}
                   >
-                    Click here
+                    Build My Career
                   </a>
                 </p>
               </>
