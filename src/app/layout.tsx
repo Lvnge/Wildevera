@@ -45,7 +45,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${cormorant.variable} ${inter.variable} data-scroll-behavior="smooth"`}
+      data-scroll-behavior="smooth"
+      className={`${playfair.variable} ${cormorant.variable} ${inter.variable}`}
     >
       <body className="anim-ready">{children}</body>
     </html>
