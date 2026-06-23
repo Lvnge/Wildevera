@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -52,7 +53,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${playfair.variable} ${cormorant.variable} ${inter.variable}`}
     >
-      <body className="anim-ready">{children}</body>
+      <body className="anim-ready">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
