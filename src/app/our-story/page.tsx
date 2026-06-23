@@ -37,7 +37,7 @@ export default function FounderPage() {
                 }}
               >
                 <Image
-                  src="/jessica.png"
+                  src="/jessica (1).webp"
                   alt="Jessica Pérez, Founder of Wildevera"
                   width={300}
                   height={300}

@@ -6,6 +6,7 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
   display: "swap",
+  preload: true, // already default, but be explicit
 });
 
 const cormorant = Cormorant_Garamond({

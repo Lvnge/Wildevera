@@ -145,7 +145,7 @@ const ADVISORS: Advisor[] = [
     affiliation: "@TheRealAmandaTurner",
     quote:
       "What Jessica is building with Wildevera is rare: a business that pairs real economic opportunity with real human respect. Small business owners need this. Displaced workers need this. I believe in the vision, and I believe in the woman behind it.",
-    headshot: "/headshots/AmandaTurner.jpg",
+    headshot: "/headshots/AmandaTurner.webp",
   },
   {
     name: "Maria Reyes",
@@ -153,7 +153,7 @@ const ADVISORS: Advisor[] = [
     affiliation: "The Bubble Boys",
     quote:
       "In a world full of businesses chasing profit, Jessica is chasing purpose — and building profit around it. Wildevera is rare. The mission is real. And I'm honored to be associated with it.",
-    headshot: "/headshots/MariaReyes.jpg",
+    headshot: "/headshots/MariaReyes.webp",
   },
   {
     name: "Shawn M.",
