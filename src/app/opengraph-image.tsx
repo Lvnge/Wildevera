@@ -13,6 +13,14 @@ export default async function Image() {
   );
   const logoBase64 = `data:image/png;base64,${logoData.toString("base64")}`;
 
+  const playfairData = await fetch(
+    "https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQZNLo_U2r.woff2",
+  ).then((res) => res.arrayBuffer());
+
+  const interData = await fetch(
+    "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2",
+  ).then((res) => res.arrayBuffer());
+
   return new ImageResponse(
     <div
       style={{
@@ -26,19 +34,17 @@ export default async function Image() {
         padding: "60px",
       }}
     >
-      {/* Logo */}
       <img
         src={logoBase64}
         width={120}
         height={120}
         style={{ marginBottom: "28px" }}
       />
-
-      {/* Brand name */}
       <div
         style={{
           color: "#C2A46D",
           fontSize: 28,
+          fontFamily: "Inter",
           letterSpacing: "0.2em",
           textTransform: "uppercase",
           marginBottom: "16px",
@@ -46,12 +52,11 @@ export default async function Image() {
       >
         WILDEVERA
       </div>
-
-      {/* Tagline */}
       <div
         style={{
           color: "#F5F2EC",
           fontSize: 52,
+          fontFamily: "Playfair Display",
           fontWeight: 700,
           textAlign: "center",
           lineHeight: 1.2,
@@ -60,12 +65,11 @@ export default async function Image() {
       >
         Where Conviction Meets Compassion
       </div>
-
-      {/* Subtitle */}
       <div
         style={{
           color: "#C2A46D",
           fontSize: 22,
+          fontFamily: "Inter",
           textAlign: "center",
           maxWidth: "700px",
         }}
@@ -73,6 +77,22 @@ export default async function Image() {
         Connecting U.S. small businesses with skilled virtual assistants
       </div>
     </div>,
-    { ...size },
+    {
+      ...size,
+      fonts: [
+        {
+          name: "Playfair Display",
+          data: playfairData,
+          style: "normal",
+          weight: 700,
+        },
+        {
+          name: "Inter",
+          data: interData,
+          style: "normal",
+          weight: 400,
+        },
+      ],
+    },
   );
 }
