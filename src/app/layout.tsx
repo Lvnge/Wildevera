@@ -25,7 +25,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Wildevera — Where Conviction Meets Compassion",
   description:
-    "Wildevera connects U.S. small businesses with skilled, English-speaking virtual assistants through dignified remote work and professional training.",
+    "Connecting U.S. small businesses with skilled virtual assistants through dignified remote work.",
+  openGraph: {
+    siteName: "Wildevera",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico?v=2" },

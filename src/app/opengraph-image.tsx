@@ -131,6 +131,22 @@ export default async function Image() {
         >
           www.wildevera.com
         </div>
+        {/* CTA */}
+        <div
+          style={{
+            marginTop: "32px",
+            background: "#C2A46D",
+            color: "#1F3A34",
+            fontSize: 18,
+            fontFamily: "Inter",
+            fontWeight: 700,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            padding: "14px 32px",
+          }}
+        >
+          Get Started →
+        </div>
       </div>
     </div>,
     {
