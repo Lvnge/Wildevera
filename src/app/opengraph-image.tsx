@@ -14,10 +14,10 @@ export default async function Image() {
   const logoBase64 = `data:image/png;base64,${logoData.toString("base64")}`;
 
   const playfairData = readFileSync(
-    join(process.cwd(), "public/fonts/PlayfairDisplay-Bold.woff2"),
+    join(process.cwd(), "public/fonts/PlayfairDisplay-Bold.ttf"),
   );
   const interData = readFileSync(
-    join(process.cwd(), "public/fonts/Inter-Regular.woff2"),
+    join(process.cwd(), "public/fonts/Inter-Regular.ttf"),
   );
 
   return new ImageResponse(
