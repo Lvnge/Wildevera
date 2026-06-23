@@ -150,11 +150,12 @@ export function SharedNavbar() {
         {/* Logo */}
         <Link href="/" style={{ textDecoration: "none" }}>
           <Image
-            src="/logoNav.png"
+            src="/logoNav.webp"
             alt="Wildevera"
-            height={120}
-            width={440}
-            style={{ width: "auto", height: "60px" }}
+            width={220}
+            height={60}
+            sizes="(max-width: 768px) 160px, 220px"
+            quality={85}
             priority
           />
         </Link>

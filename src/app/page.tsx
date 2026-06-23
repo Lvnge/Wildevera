@@ -172,7 +172,7 @@ const ADVISORS: Advisor[] = [
 const STATS = [
   { value: "48hr", label: "Match turnaround commitment" },
   { value: "100%", label: "English-Speaking VAs" },
-  { value: "U.S.", label: "Raised, Tranied, and culturally fluent " },
+  { value: "U.S.", label: "Raised, Trained, and culturally fluent " },
   { value: "1:1", label: "Dedicated matching support" },
 ];
 
