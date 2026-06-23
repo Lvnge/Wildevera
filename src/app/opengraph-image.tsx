@@ -13,13 +13,12 @@ export default async function Image() {
   );
   const logoBase64 = `data:image/png;base64,${logoData.toString("base64")}`;
 
-  const playfairData = await fetch(
-    "https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQZNLo_U2r.woff2",
-  ).then((res) => res.arrayBuffer());
-
-  const interData = await fetch(
-    "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2",
-  ).then((res) => res.arrayBuffer());
+  const playfairData = readFileSync(
+    join(process.cwd(), "public/fonts/PlayfairDisplay-Bold.woff2"),
+  );
+  const interData = readFileSync(
+    join(process.cwd(), "public/fonts/Inter-Regular.woff2"),
+  );
 
   return new ImageResponse(
     <div
@@ -82,13 +81,13 @@ export default async function Image() {
       fonts: [
         {
           name: "Playfair Display",
-          data: playfairData,
+          data: playfairData.buffer,
           style: "normal",
           weight: 700,
         },
         {
           name: "Inter",
-          data: interData,
+          data: interData.buffer,
           style: "normal",
           weight: 400,
         },
