@@ -41,6 +41,9 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png?v=2" }],
   },
   manifest: "/site.webmanifest",
+  alternates: {
+    canonical: "https://wildevera.com",
+  },
 };
 
 export default function RootLayout({
